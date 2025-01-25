@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Icon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f7fb;
+        }
+
+        /* Main Content */
+        .content {
+            height: 150vh; /* Just to show scrolling */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer .icon {
+            color: white;
+            text-align: center;
+            font-size: 0.8rem;
+            flex: 1;
+        }
+
+        .footer .icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Floating Center Button */
+        .floating-icon {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Hover Effect */
+        .floating-icon:hover {
+            background-color: #FFC107;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Scroll down to see the footer icon</h1>
+        <p>Content here...</p>
+    </div>
+
+    <div class="footer">
+        <div class="icon"><img src="home_icon.png" alt="Home"><br>Home</div>
+        <div class="icon"><img src="play_icon.png" alt="Play"><br>Play</div>
+        <div class="icon"><img src="help_icon.png" alt="Help"><br>Help</div>
+        <div class="icon"><img src="more_icon.png" alt="More"><br>More</div>
+    </div>
+
+    <div class="floating-icon">
+        <img src="center_icon.png" alt="Floating">
+    </div>
+</body>
+</html>

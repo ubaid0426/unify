@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIFY TECH NETWORK - Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-blue-600">UNIFY TECH NETWORK</a>
+                <div class="space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Support</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Authentication Container -->
+    <div class="container mx-auto px-6 py-8">
+        <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Login Section -->
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-800 text-center mb-8">Welcome Back</h2>
+                <!-- Login Form -->
+                <form id="loginForm" class="space-y-6" onsubmit="handleLogin(event)">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="login-email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="login-email" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="login-password">Password</label>
+                        <input 
+                            type="password" 
+                            id="login-password" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            required
+                        >
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox text-blue-600">
+                            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                        Sign In
+                    </button>
+                </form>
+
+                <!-- Forgot Password Link -->
+                <div class="mt-4 text-center">
+                    <button onclick="toggleResetForm()" class="text-blue-600 hover:text-blue-800 text-sm">
+                        Forgot your password?
+                    </button>
+                </div>
+
+                <!-- Reset Password Form (Hidden by default) -->
+                <form id="resetForm" class="hidden space-y-6 mt-6 pt-6 border-t" onsubmit="handleReset(event)">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="reset-email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="reset-email" 
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+                        Send Reset Link
+                    </button>
+                    <button type="button" onclick="toggleResetForm()" class="w-full bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 mt-3">
+                        Back to Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Toggle Reset Password Form
+        function toggleResetForm() {
+            const resetForm = document.getElementById('resetForm');
+            const loginForm = document.getElementById('loginForm');
+            
+            resetForm.classList.toggle('hidden');
+            loginForm.classList.toggle('hidden');
+        }
+
+        // Form Handlers
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            // Add your login logic here
+            console.log('Login:', { email, password });
+        }
+
+        function handleReset(event) {
+            event.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            // Add your password reset logic here
+            console.log('Reset:', { email });
+            alert('Password reset link has been sent to your email');
+            toggleResetForm(); // Return to login form after sending reset link
+        }
+    </script>
+</body>
+</html>

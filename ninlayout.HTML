@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0px;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --primary-blue: #1a4b8c;
+      --light-blue: #e8f1ff;
+      --hover-blue: #2563eb;
+      --dark-blue: #0f2b53;
+      --text-blue: #1e3a8a;
+    }
+
+    body {
+      background: var(--light-blue);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--primary-blue);
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #e2e8f0;
+      font-size: 1rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 10px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border: 1px solid rgba(26, 75, 140, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;  /* Increased to accommodate price */
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+      border-color: var(--hover-blue);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--light-blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--primary-blue);
+    }
+
+    .service-card:hover .service-icon img {
+      filter: brightness(0) invert(1);
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-blue);
+      margin-bottom: 10px;
+    }
+
+    .service-category {
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      color: var(--primary-blue);
+      font-weight: 600;
+      margin-top: 15px;
+      padding: 8px 12px;
+      background: var(--light-blue);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .service-card:hover .price {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    /* Category styles */
+    .search {
+      background: #e8f1ff;
+      color: #1a4b8c;
+    }
+
+    .clearance {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .validation {
+      background: #ecfeff;
+      color: #155e75;
+    }
+
+    .service-card:hover .service-category {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        padding: 5px;
+      }
+      
+      .service-card {
+        min-height: 200px;
+        padding: 20px;
+      }
+
+      .header {
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+      }
+    }
+
+    .header {
+      background: linear-gradient(
+        45deg,
+        var(--primary-blue),
+        var(--dark-blue),
+        var(--hover-blue)
+      );
+      background-size: 200% 200%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    img{
+      justify-content: center;
+      justify-items: center;
+    }
+
+    .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+         
+            height: 60px;
+            background-color:  #ff7a00;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer .icon {
+            color: white;
+            text-align: center;
+            font-size: 0.8rem;
+            flex: 1;
+        }
+
+        .footer .icon img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Floating Center Button */
+        .floating-icon {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            background-color: #ff7a00;
+            border-radius: 50%;
+            border: 4px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-icon img {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Hover Effect */
+        .floating-icon:hover {
+            background-color: #FFC107;
+            cursor: pointer;
+        }
+        
+  </style>
+</head>
+<body style="background-color:rgb(53, 85, 248);">
+  <div class="container">
+    <div class="header">
+      <h1>Services Directory</h1>
+      <div class="subtitle">Access all our digital services in one place</div>
+    </div>
+ 
+    <div class="services-grid">
+      <!-- Search Services -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon" >
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+         <a href="NINSEARCH.HTML"> <div class="service-title">NIN Search</div></a>
+          <div class="price">₦ 130</div>
+        </div>
+        <span class="service-category search">Search Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="NINphoneSEARCH.HTML"><div class="service-title">Phone Number Search</div></a>
+          <div class="price">₦ 130</div>
+        </div>
+        <span class="service-category search">Search Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="personalization.html"><div class="service-title">Personalization</div></a>
+          <div class="price">FREE</div>
+        </div>
+        <span class="service-category search">Search Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <div class="service-title">VNIN Services</div>
+          <div class="price">₦250</div>
+        </div>
+        <span class="service-category search">Verification Service</span>
+      </div>
+
+      <!-- Clearance Services -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="nomal ipe.html"><div class="service-title">Normal IPE Clearance</div></a>
+          <div class="price">₦ 800</div>
+        </div>
+        <span class="service-category clearance">Clearance Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="NAMEIPECLEARANACE.HTML"><div class="service-title">Name CR-MOD IPE Clearance</div></a>
+          <div class="price">₦ 5, 000</div>
+        </div>
+        <span class="service-category clearance">Clearance Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="DOBCRMOD.HTML"><div class="service-title">DOB CR-MOD IPE Clearance</div></a>
+          <div class="price">₦ 9, 000</div>
+        </div>
+        <span class="service-category clearance">Clearance Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="CRNEWIPE.HTML"><div class="service-title">CR New IPE Clearance</div></a>
+          <div class="price">₦ 17, 000</div>
+        </div>
+        <span class="service-category clearance">Clearance Service</span>
+      </div>
+
+      <!-- Validation Services -->
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="NORMAL VALIDATION.HTML"><div class="service-title">Normal Validation</div></a>
+          <div class="price">₦ 800</div>
+        </div>
+        <span class="service-category validation">Validation Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="CR NEW MOD VALIDATION.HTML"><div class="service-title">CR-New Validation</div></a>
+          <div class="price">₦ 9, 000</div>
+        </div>
+        <span class="service-category validation">Validation Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="CR-MOD Validation" width="50" height="50">
+          </div>
+          <a href="CRMODVALIDATION.HTML"><div class="service-title">CR-MOD Validation</div></a>
+          <div class="price">₦ 1, 200</div>
+        </div>
+        <span class="service-category validation">Validation Service</span>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="service-icon">
+            <img src="NIN2.png" alt="Search icon" width="50" height="50">
+          </div>
+          <a href="suspendennin.html"><div class="service-title">Suspended Fresh Enrolment Validation</div></a>
+          <div class="price">₦ 1, 5000</div>
+        </div>
+        <span class="service-category validation">Validation Service</span>
+      </div>
+        <div class="footer">
+          <a href="dashboard.php" class="icon">
+              <img src="home_icon.webp" alt="Home"><br>Home
+          </a>
+          <a href="history.html" class="icon">
+              <img src="history_icon.png" alt="History"><br>History
+          </a>
+          <a href="https://wa.me/your-whatsapp-number" class="icon" target="_blank">
+              <img src="whatsapp_logo.jpeg" alt="Help"><br>Help
+          </a>
+          <a href="logout.php" class="icon">
+              <img src="logout_icon.png" alt="Logout"><br>Logout
+          </a>
+      </div>
+      
+      <div class="floating-icon">
+          <a href="menu.html">
+              <img src="menu_icon.png" alt="Floating">
+          </a>
+      </div>
+
+      
+    </div>
+  </div>
+</body>
+</html>
